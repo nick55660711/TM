@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody))]
 public class HorrorObject : MonoBehaviour , ITriggerEvent
 {
+    private Rigidbody rig;
 
 
     public virtual void TriggerEvent()
     {
 
-        print("去死吧 by Reim");
 
     }
 
@@ -21,7 +23,13 @@ public class HorrorObject : MonoBehaviour , ITriggerEvent
     }
 
 
-
+    private void Awake()
+    {
+        rig = GetComponent<Rigidbody>();
+        rig.useGravity = false;
+        rig.constraints = RigidbodyConstraints.FreezeAll;
+        
+    }
 
 
 
